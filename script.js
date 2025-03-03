@@ -84,15 +84,6 @@ const location1 = async () => {
               ul.lastElementChild.scrollIntoView({ behavior: "smooth" });
             }
 
-            // var nameList = ["Mahesh", "Meet", "Shimon", "Shreya", "Aman"];
-            // var greetMsgList = [
-            //   "Hi",
-            //   "Hello",
-            //   "Namaste",
-            //   "what's up",
-            //   "good morning",
-            // ];
-
             function isInViewport(element) {
               const rect = element.getBoundingClientRect();
               return (
@@ -127,6 +118,7 @@ const location1 = async () => {
   }
 };
 location1();
+
 var userName = "";
 while (userName === "") {
   userName = prompt("Enter Your Name ");
