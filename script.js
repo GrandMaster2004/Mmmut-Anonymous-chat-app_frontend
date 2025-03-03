@@ -54,7 +54,10 @@ async function getUserLocationAndConnect() {
     }
 
     // connect to the server
-    const socket = io("https://mmmut-anonymous-chat-app-backend.vercel.app");
+    const socket = io("https://mmmut-anonymous-chat-app-backend.vercel.app", {
+      transports: ["websocket", "polling"],
+    });
+
     socket.on("check", (data) => {
       console.log(data);
     });
