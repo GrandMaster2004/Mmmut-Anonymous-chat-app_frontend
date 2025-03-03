@@ -54,7 +54,7 @@ async function getUserLocationAndConnect() {
     }
 
     // ✅ WebSocket Connection
-    const socket = io("https://locahost:5500", {
+    const socket = io("http://locahost:5500", {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });
