@@ -54,7 +54,7 @@ async function getUserLocationAndConnect() {
     }
 
     // connect to the server
-    const socket = io("http://localhost:3000");
+    const socket = io("https://mmmut-anonymous-chat-app-backend.vercel.app");
     socket.on("check", (data) => {
       console.log(data);
     });
@@ -92,7 +92,6 @@ async function getUserLocationAndConnect() {
     console.error("Geolocation error:", error.message);
   }
 }
-
 
 function showLastChat() {
   ul.lastElementChild?.scrollIntoView({ behavior: "smooth" });
