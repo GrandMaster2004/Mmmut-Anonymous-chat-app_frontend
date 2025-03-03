@@ -53,28 +53,32 @@ async function getUserLocationAndConnect() {
       return;
     }
 
-    // ✅ WebSocket Connection
-    const socket = io("http://locahost:5500", {
-      withCredentials: true,
-      transports: ["websocket", "polling"],
+    // connect to the server
+    const socket = io("http://localhost:3000");
+    socket.on("check", (data) => {
+      console.log(data);
     });
 
-    socket.on("connect", () => console.log("Connected to WebSocket Server"));
-
-    socket.on("check", (data) => console.log("Server message:", data));
-
     socket.on("sendthis", (obj) => {
-      const li = document.createElement("li");
-      li.innerHTML = `<span>${obj.user}</span>: ${obj.msg}`;
+      let runShowChat = false;
+      if (isInViewport(ul.lastElementChild)) {
+        runShowChat = true;
+      }
+      var li = document.createElement("li");
+      li.innerHTML = `<span>${obj.user}</span>${obj.msg}`;
       ul.appendChild(li);
-      showLastChat();
+
+      if (runShowChat) {
+        showLastChat();
+      }
     });
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (messageInput.value.trim() === "") return;
-
-      const li = document.createElement("li");
+      if (messageInput.value === "") {
+        return;
+      }
+      var li = document.createElement("li");
       li.innerText = messageInput.value;
       li.classList.add("right");
       ul.appendChild(li);
@@ -89,11 +93,20 @@ async function getUserLocationAndConnect() {
   }
 }
 
-// ✅ Scroll to Last Chat
+
 function showLastChat() {
   ul.lastElementChild?.scrollIntoView({ behavior: "smooth" });
 }
-
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 // ✅ Ask for Username Before Connecting
 let userName = "";
 while (!userName.trim()) {
