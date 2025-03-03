@@ -43,7 +43,7 @@ const location1 = async () => {
             console.log(`${distance} here is the data`);
 
             const socket = io(
-              "https://mmmut-anonymous-chat-app-backend.vercel.app"
+              "http://localhost:3000"
             );
             socket.on("check", (data) => {
               console.log(data);
