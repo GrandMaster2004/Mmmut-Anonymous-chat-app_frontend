@@ -81,6 +81,7 @@ const location1 = async () => {
               messageInput.value = "";
               showLastChat();
             });
+            // socket io
 
             function showLastChat() {
               ul.lastElementChild.scrollIntoView({ behavior: "smooth" });
