@@ -10,8 +10,8 @@ li {
 li span {
   padding: 5px 0px;
 }
-li span .user_name {
-  color: pink;
+span.user_name {
+  color: rgb(43, 111, 23);
   background-color: darkgreen;
 }
 nav {
