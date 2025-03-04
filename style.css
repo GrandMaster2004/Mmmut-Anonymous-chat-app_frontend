@@ -37,7 +37,7 @@ nav a {
 }
 ul .right {
   text-align: right;
-  background-color: #e1e1e1;
+  /* background-color: #e1e1e1; */
 }
 .wrapper ul li {
   padding: 1rem;
@@ -46,7 +46,7 @@ ul .right {
   /* border-radius: 20px; */
 }
 .left {
-  background-color: #e1e1e1;
+  background-color: #fffafa;
 }
 .wrapper ul li span {
   font-weight: bold;
