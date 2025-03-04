@@ -64,7 +64,7 @@ async function getUserLocationAndConnect() {
         runShowChat = true;
       }
       var li = document.createElement("li");
-      li.innerHTML = `<span calss="user_name">${obj.user}</span><span class="left">${obj.msg}</span>`;
+      li.innerHTML = `<span class="user_name">${obj.user}</span><span class="left">${obj.msg}</span>`;
       ul.appendChild(li);
 
       if (runShowChat) {
