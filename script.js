@@ -21,7 +21,6 @@ function haversine(lat1, lon1, lat2, lon2) {
   return R * c; // Distance in kilometers
 }
 
-// ✅ Get User Location and Connect to WebSocket
 async function getUserLocationAndConnect() {
   try {
     if (!navigator.geolocation) {
@@ -46,10 +45,10 @@ async function getUserLocationAndConnect() {
       latitude_center,
       longitude_center
     );
-    console.log(`Distance from center: ${distance} km`);
+    // console.log(`Distance from center: ${distance} km`);
 
     if (distance > 2) {
-      console.log("You are out of the allowed range.");
+      alert("You are not in MMMUT Campus that why chat not work");
       return;
     }
 
@@ -65,7 +64,7 @@ async function getUserLocationAndConnect() {
         runShowChat = true;
       }
       var li = document.createElement("li");
-      li.innerHTML = `<span>${obj.user}</span><span class="left">${obj.msg}</span>`;
+      li.innerHTML = `<span calss="user_name">${obj.user}</span><span class="left">${obj.msg}</span>`;
       ul.appendChild(li);
 
       if (runShowChat) {
@@ -106,11 +105,10 @@ function isInViewport(element) {
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
-// ✅ Ask for Username Before Connecting
+
 let userName = "";
 while (!userName.trim()) {
   userName = prompt("Enter Your Name");
 }
 
-// ✅ Start the App
 getUserLocationAndConnect();
