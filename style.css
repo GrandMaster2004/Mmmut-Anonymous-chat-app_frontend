@@ -10,8 +10,9 @@ li {
 li span {
   padding: 5px 0px;
 }
-.user_name {
+li span .user_name {
   color: pink;
+  background-color: darkgreen;
 }
 nav {
   max-width: 1000px;
