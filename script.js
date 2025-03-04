@@ -79,7 +79,7 @@ async function getUserLocationAndConnect() {
         return;
       }
       var li = document.createElement("li");
-      li.innerText = messageInput.value;
+      li.innerHTML = `<span>${messageInput.value}</span>`;
       li.classList.add("right");
       ul.appendChild(li);
 

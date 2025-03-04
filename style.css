@@ -4,7 +4,10 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
+li {
+  line-height: 30px;
+  padding: 20px 10px;
+}
 nav {
   max-width: 1000px;
   width: auto;
