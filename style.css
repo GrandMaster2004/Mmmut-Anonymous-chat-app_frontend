@@ -11,8 +11,8 @@ li span {
   padding: 5px 0px;
 }
 span.user_name {
-  color: rgb(43, 111, 23);
-  background-color: darkgreen;
+  color: rgb(255, 255, 255);
+  /* background-color: rgb(118, 119, 118); */
 }
 nav {
   max-width: 1000px;

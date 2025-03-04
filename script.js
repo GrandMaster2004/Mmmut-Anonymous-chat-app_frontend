@@ -55,7 +55,7 @@ async function getUserLocationAndConnect() {
     // connect to the server
     const socket = io("https://mmmut-anonymous-chat-app-backend.onrender.com");
     socket.on("check", (data) => {
-      console.log(data);
+      // console.log(data);
     });
 
     socket.on("sendthis", (obj) => {
