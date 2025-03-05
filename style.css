@@ -153,8 +153,8 @@ form input[type="click"] {
   }
   form input[type="text"] {
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
     display: flex;
-    overflow-y: auto;
+    /* overflow-y: auto; */
   }
 }
