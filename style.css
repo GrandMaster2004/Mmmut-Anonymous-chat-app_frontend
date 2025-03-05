@@ -143,12 +143,12 @@ form input[type="click"] {
   }
   .send-btn {
     visibility: hidden;
-    /* display: flex; */
     display: none;
   }
   form input[type="text"] {
     width: 100%;
     position: absolute;
     display: flex;
+    overflow-y: auto;
   }
 }
