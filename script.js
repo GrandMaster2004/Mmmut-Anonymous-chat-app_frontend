@@ -70,7 +70,7 @@ async function getUserLocationAndConnect() {
         }
       });
 
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("click", (e) => {
         e.preventDefault();
         if (messageInput.value === "") {
           return;
