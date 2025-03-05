@@ -5,14 +5,20 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 li {
-  line-height: 30px;
+  display: flex;
+  line-height: 20px;
 }
+
 li span {
   padding: 5px 0px;
 }
-span.user_name {
+.user_name {
+  display: flex;
   color: rgb(255, 255, 255);
-  /* background-color: rgb(118, 119, 118); */
+  border-radius: 6px;
+  background-color: rgb(92, 94, 94);
+  /* display: inline; */
+  padding: 5px;
 }
 nav {
   max-width: 1000px;
@@ -31,7 +37,7 @@ nav a {
 
 .wrapper {
   background-image: url("./bg4.webp");
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   max-width: 1000px;
   height: 70vh;
   width: auto;
@@ -41,24 +47,32 @@ nav a {
   overflow-y: auto;
 }
 
+.message-list {
+  display: flex;
+  flex-direction: column;
+}
 .wrapper ul {
   list-style: none;
 }
 ul .right {
-  text-align: right;
-  /* background-color: #e1e1e1; */
+  justify-content: end;
+  text-align: end;
+}
+.right span {
+  max-width: 65%;
+  background-color: darkgray;
 }
 .wrapper ul li {
   padding: 0.1rem;
   border-radius: 30px 0px 30px 30px;
 }
 .left {
-  background-color: #fffafa;
+  background-color: #dac4c4;
+  max-width: 60%;
 }
 .wrapper ul li span {
   font-weight: bold;
   padding: 5px 10px;
-  background-color: darkgray;
   margin-right: 10px;
   border-radius: 10px;
 }

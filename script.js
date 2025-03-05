@@ -45,48 +45,46 @@ async function getUserLocationAndConnect() {
       latitude_center,
       longitude_center
     );
-    // console.log(`Distance from center: ${distance} km`);
-
     if (distance > 2) {
-      alert("You are not in MMMUT Campus that why chat not work");
+      alert("You are not in MMMUT Campus thats why chat not work");
       return;
-    }
+    } else {
+      const socket = io(
+        "https://mmmut-anonymous-chat-app-backend.onrender.com"
+      );
+      // https://mmmut-anonymous-chat-app-backend.onrender.com
+      socket.on("check", (data) => {});
 
-    // connect to the server
-    const socket = io("https://mmmut-anonymous-chat-app-backend.onrender.com");
-    socket.on("check", (data) => {
-      // console.log(data);
-    });
+      socket.on("sendthis", (obj) => {
+        let runShowChat = false;
+        if (isInViewport(ul.lastElementChild)) {
+          runShowChat = true;
+        }
+        var li = document.createElement("li");
+        li.innerHTML = `<span ><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span>`;
+        ul.appendChild(li);
 
-    socket.on("sendthis", (obj) => {
-      let runShowChat = false;
-      if (isInViewport(ul.lastElementChild)) {
-        runShowChat = true;
-      }
-      var li = document.createElement("li");
-      li.innerHTML = `<span class="user_name">${obj.user}</span><span class="left">${obj.msg}</span>`;
-      ul.appendChild(li);
+        if (runShowChat) {
+          showLastChat();
+        }
+      });
 
-      if (runShowChat) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (messageInput.value === "") {
+          return;
+        }
+        var li = document.createElement("li");
+        li.innerHTML = `<span>${messageInput.value}</span>`;
+        li.classList.add("right");
+        ul.appendChild(li);
+
+        socket.emit("message", { msg: messageInput.value, user: userName });
+
+        messageInput.value = "";
         showLastChat();
-      }
-    });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (messageInput.value === "") {
-        return;
-      }
-      var li = document.createElement("li");
-      li.innerHTML = `<span>${messageInput.value}</span>`;
-      li.classList.add("right");
-      ul.appendChild(li);
-
-      socket.emit("message", { msg: messageInput.value, user: userName });
-
-      messageInput.value = "";
-      showLastChat();
-    });
+      });
+    }
   } catch (error) {
     console.error("Geolocation error:", error.message);
   }
