@@ -36,7 +36,6 @@ nav a {
 
 .wrapper {
   background-image: url("./bg4.webp");
-  /* background-color: aliceblue; */
   max-width: 1000px;
   height: 70vh;
   width: auto;
@@ -100,6 +99,9 @@ form input[type="click"] {
 }
 
 @media (max-width: 600px) {
+  .wrapper ul li span {
+    font-weight: normal;
+  }
   .right span {
     max-width: 75%;
   }
@@ -113,7 +115,7 @@ form input[type="click"] {
     padding: 0.1rem;
     border-radius: 2px;
     overflow-y: auto;
-    /* height: 90vh; */
+    height: 90vh;
   }
   .wrapper ul {
     min-height: auto;
