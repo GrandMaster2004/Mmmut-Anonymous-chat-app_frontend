@@ -94,7 +94,7 @@ form input {
 form input[type="text"] {
   width: 80%;
 }
-form input[type="submit"] {
+form input[type="click"] {
   width: 18%;
   cursor: pointer;
 }
@@ -143,5 +143,10 @@ form input[type="submit"] {
   }
   .send-btn {
     visibility: hidden;
+    /* display: flex; */
+    display: none;
+  }
+  form input[type="text"] {
+    width: 100%;
   }
 }
