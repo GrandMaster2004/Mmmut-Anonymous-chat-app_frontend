@@ -151,6 +151,6 @@ form input[type="click"] {
   }
   form {
     display: flex;
-    position: sticky;
+    position: absolute;
   }
 }
