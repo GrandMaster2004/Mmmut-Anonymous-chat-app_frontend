@@ -53,6 +53,7 @@ async function getUserLocationAndConnect() {
         "https://mmmut-anonymous-chat-app-backend.onrender.com"
       );
       // https://mmmut-anonymous-chat-app-backend.onrender.com
+      // http://localhost:3000
       socket.on("check", (data) => {});
 
       socket.on("sendthis", (obj) => {

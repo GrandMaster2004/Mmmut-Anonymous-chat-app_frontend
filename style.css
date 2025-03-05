@@ -17,7 +17,6 @@ li span {
   color: rgb(255, 255, 255);
   border-radius: 6px;
   background-color: rgb(92, 94, 94);
-  /* display: inline; */
   padding: 5px;
 }
 nav {
@@ -98,4 +97,39 @@ form input[type="text"] {
 form input[type="submit"] {
   width: 18%;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: auto;
+    margin: 0.1rem auto;
+    padding: 0.1rem;
+    border-radius: 2px;
+    overflow-y: auto;
+  }
+  .user_name {
+    padding: 3px;
+  }
+  li {
+    font-size: smaller;
+  }
+  .wrapper ul li span {
+    padding: 5px 7px 0px 3px;
+    margin-right: 0px;
+    border-radius: 7px;
+  }
+
+  nav {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  nav a {
+    font-size: 0.8;
+  }
+  form input {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border: 1px solid rgb(81, 105, 84);
+    border-radius: 10px;
+  }
 }
