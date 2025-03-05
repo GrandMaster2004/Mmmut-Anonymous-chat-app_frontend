@@ -113,7 +113,10 @@ form input[type="click"] {
     padding: 0.1rem;
     border-radius: 2px;
     overflow-y: auto;
-    height: auto;
+    height: 90vh;
+  }
+  .wrapper ul {
+    min-height: auto;
   }
   .user_name {
     padding: 3px;
