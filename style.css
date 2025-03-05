@@ -148,9 +148,7 @@ form input[type="click"] {
   }
   form input[type="text"] {
     width: 100%;
-  }
-  form input {
-    /* display: flex; */
-    position: absolute;
+    position: static;
+    display: flex;
   }
 }
