@@ -93,7 +93,7 @@ form input {
 form input[type="text"] {
   width: 80%;
 }
-form input[type="click"] {
+form input[type="submit"] {
   width: 18%;
   cursor: pointer;
 }
@@ -154,7 +154,7 @@ form input[type="click"] {
   form input[type="text"] {
     width: 100%;
     /* position: absolute; */
-    display: flex;
+    /* display: flex; */
     /* overflow-y: auto; */
   }
 }

@@ -2,6 +2,7 @@ const ul = document.querySelector(".message-list");
 const sendBtn = document.querySelector(".send-btn");
 const messageInput = document.querySelector(".message-input");
 const form = document.querySelector("form");
+const onlineCount = document.getElementById("onlineCount");
 
 function haversine(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth's radius in KM
@@ -49,13 +50,14 @@ async function getUserLocationAndConnect() {
       alert("You are not in MMMUT Campus thats why chat not work");
       return;
     } else {
-      const socket = io(
-        "https://mmmut-anonymous-chat-app-backend.onrender.com"
-      );
+      const socket = io("https://mmmut-anonymous-chat-app-backend.vercel.app");
       // https://mmmut-anonymous-chat-app-backend.onrender.com
       // http://localhost:3000
       socket.on("check", (data) => {});
-
+      socket.on("onlineUsers", (count) => {
+        onlineCount.textContent = count;
+        console.log(count);
+      });
       socket.on("sendthis", (obj) => {
         let runShowChat = false;
         if (isInViewport(ul.lastElementChild)) {
