@@ -134,11 +134,14 @@ form input[type="submit"] {
   nav a {
     font-size: 0.8;
   }
-  
+
   form input {
     padding: 0.5rem;
     font-size: 0.8rem;
     border: 1px solid rgb(81, 105, 84);
     border-radius: 10px;
+  }
+  .send-btn {
+    visibility: hidden;
   }
 }
