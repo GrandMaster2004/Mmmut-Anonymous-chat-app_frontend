@@ -94,13 +94,13 @@ async function getUserLocationAndConnect() {
 function showLastChat() {
   ul.lastElementChild?.scrollIntoView({ behavior: "smooth" });
 }
-function isInViewport(element) {
+function isInViewport(element, margin = 0) {
   const rect = element.getBoundingClientRect();
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
+      (window.innerHeight || document.documentElement.clientHeight) - margin &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
