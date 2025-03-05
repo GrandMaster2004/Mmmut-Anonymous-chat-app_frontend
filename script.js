@@ -50,7 +50,9 @@ async function getUserLocationAndConnect() {
       alert("You are not in MMMUT Campus thats why chat not work");
       return;
     } else {
-      const socket = io("https://mmmut-anonymous-chat-app-backend.vercel.app");
+      const socket = io(
+        "https://mmmut-anonymous-chat-app-backend.onrender.com"
+      );
       // https://mmmut-anonymous-chat-app-backend.onrender.com
       // http://localhost:3000
       socket.on("check", (data) => {});
