@@ -149,8 +149,8 @@ form input[type="click"] {
   form input[type="text"] {
     width: 100%;
   }
-  form {
-    display: flex;
+  form input {
+    /* display: flex; */
     position: absolute;
   }
 }
