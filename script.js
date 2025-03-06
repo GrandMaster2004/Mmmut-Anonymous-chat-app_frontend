@@ -52,8 +52,8 @@ async function getUserLocationAndConnect() {
     } else {
       const socket = io(
         // "http://localhost:3000"
-        // "https://mmmut-anonymous-chat-app-backend.onrender.com"
-        "https://imaginative-mochi-e288fc.netlify.app"
+        "https://mmmut-anonymous-chat-app-backend.onrender.com"
+        // "https://imaginative-mochi-e288fc.netlify.app"
       );
       // https://mmmut-anonymous-chat-app-backend.onrender.com
       // http://localhost:3000
