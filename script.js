@@ -51,14 +51,15 @@ async function getUserLocationAndConnect() {
       return;
     } else {
       const socket = io(
+        // "http://localhost:3000"
         "https://mmmut-anonymous-chat-app-backend.onrender.com"
       );
       // https://mmmut-anonymous-chat-app-backend.onrender.com
       // http://localhost:3000
-      socket.on("check", (data) => {});
+      // socket.on("check", (data) => {});
       socket.on("onlineUsers", (count) => {
         onlineCount.textContent = count;
-        console.log(count);
+        // console.log(count);
       });
       socket.on("sendthis", (obj) => {
         let runShowChat = false;
@@ -83,9 +84,7 @@ async function getUserLocationAndConnect() {
         li.innerHTML = `<span>${messageInput.value}</span>`;
         li.classList.add("right");
         ul.appendChild(li);
-
         socket.emit("message", { msg: messageInput.value, user: userName });
-
         messageInput.value = "";
         showLastChat();
       });
