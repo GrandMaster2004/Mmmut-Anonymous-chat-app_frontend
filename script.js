@@ -148,7 +148,7 @@ async function getUserLocationAndConnect() {
         e.preventDefault();
         if (messageInput.value === "") return;
         let li = document.createElement("li");
-        li.innerHTML = `<span>${messageInput.value}</span><span class="time">${currentTime}</span>`;
+        li.innerHTML = `<div class="time">${currentTime}</div><span>${messageInput.value}</span>`;
         li.classList.add("right");
         ul.appendChild(li);
         socket.emit("message", { msg: messageInput.value, user: userName });
