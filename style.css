@@ -28,7 +28,6 @@ nav {
   padding: 1rem;
   border-bottom: 2px solid #e1e1e1;
   justify-content: space-around;
-  position: fixed;
 }
 nav a {
   text-decoration: none;
@@ -95,7 +94,6 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
 }
 form input {
   padding: 1rem;
@@ -113,6 +111,17 @@ form input[type="submit"] {
 }
 
 @media (max-width: 600px) {
+  nav {
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+    width: 100%;
+  }
+
+  form {
+    position: sticky;
+    bottom: 0;
+  }
   .wrapper ul li span {
     font-weight: normal;
   }
@@ -126,6 +135,7 @@ form input[type="submit"] {
   .wrapper {
     width: auto;
     margin: 0.1rem auto;
+    margin-top: 2.5rem;
     padding: 0.1rem;
     border-radius: 2px;
     overflow-y: auto;
