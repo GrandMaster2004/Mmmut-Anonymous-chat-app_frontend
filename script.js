@@ -140,7 +140,7 @@ async function getUserLocationAndConnect() {
       console.log("Current time:", currentTime);
       socket.on("sendthis", (obj) => {
         let li = document.createElement("li");
-        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><span class="time">${currentTime}</span>`;
+        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><div class="time">${currentTime}</div>`;
         ul.appendChild(li);
         showLastChat();
       });
