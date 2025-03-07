@@ -14,9 +14,9 @@ li span {
 }
 .user_name {
   display: flex;
-  color: rgb(255, 255, 255);
+  color: #0abd91;
   border-radius: 6px;
-  background-color: rgb(92, 94, 94);
+  background-color: rgb(223, 228, 228);
   padding: 5px;
 }
 nav {
@@ -27,13 +27,20 @@ nav {
   align-items: flex-start;
   padding: 1rem;
   border-bottom: 2px solid #e1e1e1;
+  justify-content: space-around;
 }
 nav a {
   text-decoration: none;
   font-size: 1rem;
-  color: rgb(112, 67, 71);
+  color: rgb(10, 10, 10);
 }
-
+.counter {
+  color: #0a0a0a;
+  /* display: flex; */
+}
+#onlineCount {
+  color: red;
+}
 .wrapper {
   background-image: url("./bg4.webp");
   max-width: 1000px;
@@ -55,19 +62,24 @@ nav a {
 ul .right {
   justify-content: end;
   text-align: end;
+  color: #fff;
 }
 .right span {
   max-width: 65%;
-  background-color: darkgray;
+  background-color: rgb(72, 178, 77);
 }
 .wrapper ul li {
   padding: 0.1rem;
   border-radius: 30px 0px 30px 30px;
 }
 .left {
-  background-color: #dac4c4;
+  background-color: #343434;
   max-width: 60%;
+  color: #fff;
 }
+/* .left span {
+  color: #fff;
+} */
 .wrapper ul li span {
   font-weight: bold;
   padding: 5px 10px;
@@ -86,7 +98,7 @@ form {
 form input {
   padding: 1rem;
   font-size: 1rem;
-  border: 2px solid rgb(81, 105, 84);
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 10px;
   outline: none;
 }
@@ -106,7 +118,7 @@ form input[type="submit"] {
     max-width: 75%;
   }
   .left {
-    background-color: #dac4c4;
+    background-color: #212121;
     max-width: 75%;
   }
   .wrapper {
@@ -143,7 +155,7 @@ form input[type="submit"] {
   form input {
     padding: 0.5rem;
     font-size: 0.8rem;
-    border: 1px solid rgb(81, 105, 84);
+    border: 1px solid rgb(3, 9, 4);
     border-radius: 10px;
     margin-top: 5px;
   }

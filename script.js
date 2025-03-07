@@ -88,7 +88,12 @@ async function readData() {
 // Geolocation & Chat Connection
 async function getUserLocationAndConnect() {
   try {
-    if (!navigator.geolocation) throw new Error("Geolocation not supported");
+    if (!navigator.geolocation)
+      throw new Error(
+        alert(
+          "You are not in MMMUT Campus, chat not allowed. You can try on location"
+        )
+      );
     const position = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, {
         enableHighAccuracy: true,
@@ -103,31 +108,41 @@ async function getUserLocationAndConnect() {
     ) {
       alert("You are not in MMMUT Campus, chat not allowed.");
       return;
+    } else {
+      console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
+
+      readData();
+
+      const socket = io(
+        // "http://127.0.0.1:3000"
+        "https://mmmut-anonymous-chat-app-backend.onrender.com"
+      );
+      socket.on("onlineUsers", (count) => {
+        onlineCount.textContent = count;
+      });
+      socket.on("sendthis", (obj) => {
+        let li = document.createElement("li");
+        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span>`;
+        ul.appendChild(li);
+        showLastChat();
+      });
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (messageInput.value === "") return;
+        let li = document.createElement("li");
+        li.innerHTML = `<span>${messageInput.value}</span>`;
+        li.classList.add("right");
+        ul.appendChild(li);
+        socket.emit("message", { msg: messageInput.value, user: userName });
+        writeUserData(userName, messageInput.value);
+        messageInput.value = "";
+        showLastChat();
+      });
     }
-    const socket = io("https://mmmut-anonymous-chat-app-backend.onrender.com");
-    socket.on("onlineUsers", (count) => {
-      onlineCount.textContent = count;
-    });
-    socket.on("sendthis", (obj) => {
-      let li = document.createElement("li");
-      li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span>`;
-      ul.appendChild(li);
-      showLastChat();
-    });
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (messageInput.value === "") return;
-      let li = document.createElement("li");
-      li.innerHTML = `<span>${messageInput.value}</span>`;
-      li.classList.add("right");
-      ul.appendChild(li);
-      socket.emit("message", { msg: messageInput.value, user: userName });
-      writeUserData(userName, messageInput.value);
-      messageInput.value = "";
-      showLastChat();
-    });
   } catch (error) {
-    console.error("Geolocation error:", error.message);
+    alert(
+      "You are not in MMMUT Campus, chat not allowed. You can try on location"
+    );
   }
 }
 
@@ -159,4 +174,3 @@ while (!userName.trim()) {
 
 // Initialize Chat
 getUserLocationAndConnect();
-readData();
