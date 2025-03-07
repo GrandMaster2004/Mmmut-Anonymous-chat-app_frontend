@@ -73,12 +73,19 @@ async function readData() {
   snapshot.forEach((childsnapShot) => {
     let name = childsnapShot.data().name;
     let msg = childsnapShot.data().message;
+    let time = childsnapShot.data().timestamp;
+    const currentDate = time.toDate();
+
+    // Extract hours and minutes
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+
     let li = document.createElement("li");
     if (userName === name) {
-      li.innerHTML = `<span>${msg}</span>`;
+      li.innerHTML = `<div class="time">${hours}:${minutes}</div><span>${msg}</span>`;
       li.classList.add("right");
     } else {
-      li.innerHTML = `<span ><div class="user_name">${name}</div></span><span class="left">${msg}</span>`;
+      li.innerHTML = `<span ><div class="user_name">${name}</div></span><span class="left">${msg}</span><div class="time">${hours}:${minutes}</div>`;
     }
     ul.appendChild(li);
   });
@@ -141,7 +148,7 @@ async function getUserLocationAndConnect() {
         e.preventDefault();
         if (messageInput.value === "") return;
         let li = document.createElement("li");
-        li.innerHTML = `<span>${messageInput.value}</span>`;
+        li.innerHTML = `<span>${messageInput.value}</span><span class="time">${currentTime}</span>`;
         li.classList.add("right");
         ul.appendChild(li);
         socket.emit("message", { msg: messageInput.value, user: userName });
