@@ -120,9 +120,20 @@ async function getUserLocationAndConnect() {
       socket.on("onlineUsers", (count) => {
         onlineCount.textContent = count;
       });
+      const now = new Date();
+
+      // Get the current hours, minutes, and seconds
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      // const seconds = now.getSeconds().toString().padStart(2, '0');
+
+      // Format the time as HH:MM:SS
+      const currentTime = `${hours}:${minutes}`;
+
+      console.log("Current time:", currentTime);
       socket.on("sendthis", (obj) => {
         let li = document.createElement("li");
-        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span>`;
+        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><span class="time">${currentTime}</span>`;
         ul.appendChild(li);
         showLastChat();
       });
