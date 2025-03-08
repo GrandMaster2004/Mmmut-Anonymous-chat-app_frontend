@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 li {
   display: flex;
   line-height: 20px;

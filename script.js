@@ -110,53 +110,53 @@ async function getUserLocationAndConnect() {
     });
     const { latitude, longitude } = position.coords;
     const allowedRadius = 2; // 2 KM Limit
-    if (
-      haversine(latitude, longitude, 26.7354656, 83.4378953) > allowedRadius
-    ) {
-      alert("You are not in MMMUT Campus, chat not allowed.");
-      return;
-    } else {
-      console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
+    // if (
+    //   haversine(latitude, longitude, 26.7354656, 83.4378953) > allowedRadius
+    // ) {
+    //   alert("You are not in MMMUT Campus, chat not allowed.");
+    //   return;
+    // } else {
+    console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
 
-      readData();
+    readData();
 
-      const socket = io(
-        // "http://127.0.0.1:3000"
-        "https://mmmut-anonymous-chat-app-backend.onrender.com"
-      );
-      socket.on("onlineUsers", (count) => {
-        onlineCount.textContent = count;
-      });
-      const now = new Date();
+    const socket = io(
+      // "http://127.0.0.1:3000"
+      "https://mmmut-anonymous-chat-app-backend.onrender.com"
+    );
+    socket.on("onlineUsers", (count) => {
+      onlineCount.textContent = count;
+    });
+    const now = new Date();
 
-      // Get the current hours, minutes, and seconds
-      const hours = now.getHours().toString().padStart(2, "0");
-      const minutes = now.getMinutes().toString().padStart(2, "0");
-      // const seconds = now.getSeconds().toString().padStart(2, '0');
+    // Get the current hours, minutes, and seconds
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    // const seconds = now.getSeconds().toString().padStart(2, '0');
 
-      // Format the time as HH:MM:SS
-      const currentTime = `${hours}:${minutes}`;
+    // Format the time as HH:MM:SS
+    const currentTime = `${hours}:${minutes}`;
 
-      console.log("Current time:", currentTime);
-      socket.on("sendthis", (obj) => {
-        let li = document.createElement("li");
-        li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><div class="time">${currentTime}</div>`;
-        ul.appendChild(li);
-        showLastChat();
-      });
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (messageInput.value === "") return;
-        let li = document.createElement("li");
-        li.innerHTML = `<div class="time">${currentTime}</div><span>${messageInput.value}</span>`;
-        li.classList.add("right");
-        ul.appendChild(li);
-        socket.emit("message", { msg: messageInput.value, user: userName });
-        writeUserData(userName, messageInput.value);
-        messageInput.value = "";
-        showLastChat();
-      });
-    }
+    console.log("Current time:", currentTime);
+    socket.on("sendthis", (obj) => {
+      let li = document.createElement("li");
+      li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><div class="time">${currentTime}</div>`;
+      ul.appendChild(li);
+      showLastChat();
+    });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (messageInput.value === "") return;
+      let li = document.createElement("li");
+      li.innerHTML = `<div class="time">${currentTime}</div><span>${messageInput.value}</span>`;
+      li.classList.add("right");
+      ul.appendChild(li);
+      socket.emit("message", { msg: messageInput.value, user: userName });
+      writeUserData(userName, messageInput.value);
+      messageInput.value = "";
+      showLastChat();
+    });
+    // }
   } catch (error) {
     alert(
       "You are not in MMMUT Campus, chat not allowed. You can try on location"
