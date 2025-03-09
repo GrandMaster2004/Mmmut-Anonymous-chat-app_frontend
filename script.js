@@ -70,10 +70,13 @@ setInterval(deleteOldMessages, 5 * 60 * 1000);
 
 // Function to Read Messages from Firestore
 async function readData() {
-  const snapshot = await getDocs(
+  const q = query(
     collection(db, "users"),
-    orderBy("timestamp", "asc")
+    orderBy("timestamp", "asc") // Correct placement of orderBy()
   );
+
+  const snapshot = await getDocs(q);
+
   snapshot.forEach((childsnapShot) => {
     let name = childsnapShot.data().name;
     let msg = childsnapShot.data().message;
