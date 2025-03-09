@@ -95,34 +95,34 @@ async function readData() {
 // Geolocation & Chat Connection
 async function getUserLocationAndConnect() {
   try {
-    // if (!navigator.geolocation)
-    //   throw new Error(
-    //     alert(
-    //       "You are not in MMMUT Campus, chat not allowed. You can try on location"
-    //     )
-    //   );
-    // const position = await new Promise((resolve, reject) => {
-    //   navigator.geolocation.getCurrentPosition(resolve, reject, {
-    //     enableHighAccuracy: true,
-    //     timeout: 5000,
-    //     maximumAge: 0,
-    //   });
-    // });
-    // const { latitude, longitude } = position.coords;
-    // const allowedRadius = 2; // 2 KM Limit
+    if (!navigator.geolocation)
+      throw new Error(
+        alert(
+          "You are not in MMMUT Campus, chat not allowed. You can try on location"
+        )
+      );
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      });
+    });
+    const { latitude, longitude } = position.coords;
+    const allowedRadius = 2; // 2 KM Limit
     // if (
     //   haversine(latitude, longitude, 26.7354656, 83.4378953) > allowedRadius
     // ) {
     //   alert("You are not in MMMUT Campus, chat not allowed.");
     //   return;
     // } else {
-    // console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
+    console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
 
     readData();
 
     const socket = io(
-      "http://127.0.0.1:3000"
-      // "https://mmmut-anonymous-chat-app-backend.onrender.com"
+      // "http://127.0.0.1:3000"
+      "https://mmmut-anonymous-chat-app-backend.onrender.com"
     );
     socket.on("onlineUsers", (count) => {
       onlineCount.textContent = count;
