@@ -17,6 +17,7 @@ import {
   deleteDoc,
   doc,
   Timestamp,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 // Firebase Config
@@ -69,7 +70,10 @@ setInterval(deleteOldMessages, 5 * 60 * 1000);
 
 // Function to Read Messages from Firestore
 async function readData() {
-  const snapshot = await getDocs(collection(db, "users"));
+  const snapshot = await getDocs(
+    collection(db, "users"),
+    orderBy("timestamp", "asc")
+  );
   snapshot.forEach((childsnapShot) => {
     let name = childsnapShot.data().name;
     let msg = childsnapShot.data().message;
