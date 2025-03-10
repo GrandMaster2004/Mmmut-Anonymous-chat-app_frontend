@@ -44,6 +44,14 @@ async function writeUserData(name, message) {
     timestamp: Timestamp.now(), // Add timestamp for deletion logic
   });
 }
+async function writeUserData_reply(name, message, reply) {
+  await addDoc(collection(db, "users"), {
+    name: name,
+    message: message,
+    reply: reply,
+    timestamp: Timestamp.now(), // Add timestamp for deletion logic
+  });
+}
 
 // Function to Delete Messages Older than 1 Hour
 async function deleteOldMessages() {
@@ -80,6 +88,7 @@ async function readData() {
   snapshot.forEach((childsnapShot) => {
     let name = childsnapShot.data().name;
     let msg = childsnapShot.data().message;
+    let reply = childsnapShot.data().reply;
     let time = childsnapShot.data().timestamp;
     const currentDate = time.toDate();
 
@@ -89,10 +98,37 @@ async function readData() {
 
     let li = document.createElement("li");
     if (userName === name) {
-      li.innerHTML = `<div class="time">${hours}:${minutes}</div><span>${msg}</span>`;
-      li.classList.add("right");
+      li.classList.add("self");
+      li.innerHTML = `<div class="avatar">
+          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+        </div>
+        <div class="msg" onclick="selectMessage(this)">
+          ${
+            reply !== undefined
+              ? `<p class="reply"><span class="user_name" >${name}</span>${reply}</p>`
+              : ""
+          }
+          <p class="message">
+          ${msg}
+          </p>
+          <time>${hours}:${minutes}</time>
+        </div>`;
     } else {
-      li.innerHTML = `<span ><div class="user_name">${name}</div></span><span class="left">${msg}</span><div class="time">${hours}:${minutes}</div>`;
+      li.classList.add("other");
+      li.innerHTML = `<div class="avatar">
+          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+        </div>
+        <div class="msg" onclick="selectMessage(this)">
+          ${
+            reply !== undefined
+              ? `<p class="reply"><span class="user_name" >${name}</span>${reply}</p>`
+              : `<p class="user_name">${name}</p>`
+          }
+          <p class="message">
+          ${msg}
+          </p>
+          <time>${hours}:${minutes}</time>
+        </div>`;
     }
     ul.appendChild(li);
   });
@@ -139,27 +175,85 @@ async function getUserLocationAndConnect() {
     // Get the current hours, minutes, and seconds
     const hours = now.getHours().toString().padStart(2, "0");
     const minutes = now.getMinutes().toString().padStart(2, "0");
-    // const seconds = now.getSeconds().toString().padStart(2, '0');
-
-    // Format the time as HH:MM:SS
     const currentTime = `${hours}:${minutes}`;
 
     console.log("Current time:", currentTime);
     socket.on("sendthis", (obj) => {
       let li = document.createElement("li");
-      li.innerHTML = `<span><div class="user_name">${obj.user}</div></span><span class="left">${obj.msg}</span><div class="time">${currentTime}</div>`;
+      let reply = obj.userreply;
+      li.classList.add("other");
+      li.innerHTML = `<div class="avatar">
+          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+        </div>
+        <div class="msg" onclick="selectMessage(this)">
+          ${
+            reply !== undefined
+              ? `<p class="reply"><span class="user_name">${obj.user}</span>${reply}</p>`
+              : `<p class="user_name">${obj.user}</p>`
+          }
+          <p class="message">
+          ${obj.msg}
+          </p>
+          <time>${currentTime}</time>
+        </div>`;
       ul.appendChild(li);
       showLastChat();
     });
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (messageInput.value === "") return;
       let li = document.createElement("li");
-      li.innerHTML = `<div class="time">${currentTime}</div><span>${messageInput.value}</span>`;
-      li.classList.add("right");
+      let reply = document.getElementById("reply-box");
+
+      li.classList.add("self");
+      reply = reply ? reply.innerText.trim() : null;
+      let sen = reply.slice(0, -3);
+      // console.log(sen);
+
+      if (reply) {
+        // console.log("in the replya secontion");
+
+        li.innerHTML = `<div class="avatar">
+          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+        </div>
+        <div class="msg" onclick="selectMessage(this)">
+          
+            ${reply !== undefined ? `<p class="reply">${sen}</p>` : ""}
+          
+          <p class="message">
+          ${messageInput.value}
+          </p>
+          <time>${currentTime}</time>
+        </div>`;
+
+        socket.emit("message", {
+          msg: messageInput.value,
+          user: userName,
+          userreply: sen,
+        });
+        writeUserData_reply(userName, messageInput.value, sen);
+        document.getElementById("reply-section").innerHTML = "";
+      } else {
+        li.innerHTML = ` <div class="avatar">
+          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+        </div>
+        <div class="msg" onclick="selectMessage(this)">
+          
+          <p class="message">
+            ${messageInput.value}
+          </p>
+          
+          <time>${currentTime}</time>
+        </div>`;
+        socket.emit("message", {
+          msg: messageInput.value,
+          user: userName,
+        });
+        writeUserData(userName, messageInput.value);
+      }
       ul.appendChild(li);
-      socket.emit("message", { msg: messageInput.value, user: userName });
-      writeUserData(userName, messageInput.value);
+
       messageInput.value = "";
       showLastChat();
     });

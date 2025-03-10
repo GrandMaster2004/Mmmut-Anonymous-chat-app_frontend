@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Public Chat App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="script.js" defer>
-      import mongoose from 'mongoose'
-    </script>
   </head>
+
   <body>
-    <nav>
-      <a href="index.html">Public Chat App MMM Only</a>
-      <div class="counter">
-        Online Users:
-        <span id="onlineCount">0 </span>
-      </div>
-    </nav>
-
-    <div class="wrapper">
-      <ul class="message-list">
-        <li class="right"><span>Happy anonymous chatting</span></li>
-      </ul>
+    <!-- <div class="container"></div> -->
+    <img class="img_bg" src="./bg4.webp" alt="img" />
+    <div class="menu">
+      <div class="name">Public Chat App MMM Only</div>
+      <div class="last">Online Users: <span id="onlineCount">0 </span></div>
     </div>
-
+    <ol class="chat message-list">
+      <li class="other">
+        <div class="avatar">
+          <imga
+            src="https://img.freepik.com/premium-photo/free-image-emotionally-reflective-sad-boy-wallpaper-depicting-loneliness-sorrow_1122354-1016.jpg"
+          />
+        </div>
+        <div class="msg msg_left" onclick="selectMessage(this)">
+          <p class="user_name">YoungMaster</p>
+          <p class="message">Happy Anonymous Chatting</p>
+          <time>20:17</time>
+        </div>
+      </li>
+    </ol>
     <form>
-      <input
-        type="text"
-        name="msg"
-        id="message"
-        class="message-input"
-        placeholder="write message here"
-      />
-      <input type="submit" value="Send" class="send-btn" />
+      <div id="reply-section"></div>
+      <div class="input_text">
+        <input
+          type="text"
+          name="msg"
+          id="message"
+          class="message-input"
+          placeholder="write message here"
+        />
+        <input type="submit" value="Send" class="send-btn" />
+      </div>
     </form>
+
+    <script>
+      function selectMessage(element) {
+        let user = element.querySelector(".user_name");
+        user = user ? user.innerText.trim() : "You";
+
+        let message = element.querySelector(".message").innerText;
+
+        document.getElementById(
+          "reply-section"
+        ).innerHTML = `<li id='reply-box'><div><span id='user'>${user}</span> : <span class="message">${message}</span></div><div class="close" onclick="closeReply(this)">cut</div></li>`;
+      }
+      function closeReply(element) {
+        // Remove the parent <li> element of the clicked "cut" button
+        element.parentElement.remove();
+      }
+    </script>
+
     <script
       src="https://cdn.socket.io/4.5.0/socket.io.min.js"
       integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
