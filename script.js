@@ -159,7 +159,7 @@ async function getUserLocationAndConnect() {
     //   alert("You are not in MMMUT Campus, chat not allowed.");
     //   return;
     // } else {
-    console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
+    // console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
 
     readData();
 
@@ -177,7 +177,7 @@ async function getUserLocationAndConnect() {
     const minutes = now.getMinutes().toString().padStart(2, "0");
     const currentTime = `${hours}:${minutes}`;
 
-    console.log("Current time:", currentTime);
+    // console.log("Current time:", currentTime);
     socket.on("sendthis", (obj) => {
       let li = document.createElement("li");
       let reply = obj.userreply;
@@ -208,12 +208,12 @@ async function getUserLocationAndConnect() {
 
       li.classList.add("self");
       reply = reply ? reply.innerText.trim() : null;
-      let sen = reply.slice(0, -3);
+
       // console.log(sen);
 
       if (reply) {
         // console.log("in the replya secontion");
-
+        let sen = reply.slice(0, -3);
         li.innerHTML = `<div class="avatar">
           <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
         </div>
