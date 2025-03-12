@@ -100,7 +100,7 @@ async function readData() {
     if (userName === name) {
       li.classList.add("self");
       li.innerHTML = `<div class="avatar">
-          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+          <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
           ${
@@ -116,7 +116,7 @@ async function readData() {
     } else {
       li.classList.add("other");
       li.innerHTML = `<div class="avatar">
-          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+          <img src="https://img.freepik.com/premium-photo/hand-drawn-cartoon-illustration-cute-little-girl-wearing-glasses_561641-10066.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
           ${
@@ -183,7 +183,7 @@ async function getUserLocationAndConnect() {
       let reply = obj.userreply;
       li.classList.add("other");
       li.innerHTML = `<div class="avatar">
-          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+          <img src="https://img.freepik.com/premium-photo/hand-drawn-cartoon-illustration-cute-little-girl-wearing-glasses_561641-10066.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
           ${
@@ -215,7 +215,7 @@ async function getUserLocationAndConnect() {
         // console.log("in the replya secontion");
         let sen = reply.slice(0, -3);
         li.innerHTML = `<div class="avatar">
-          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+          <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
           
@@ -236,7 +236,7 @@ async function getUserLocationAndConnect() {
         document.getElementById("reply-section").innerHTML = "";
       } else {
         li.innerHTML = ` <div class="avatar">
-          <img src="https://i.imgur.com/HYcn9xO.png" draggable="false" />
+          <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
           

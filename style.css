@@ -16,7 +16,7 @@ body {
   position: fixed;
   z-index: -1;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   top: 0;
 }
 a {
@@ -35,7 +35,7 @@ a {
   /* right: 0px; */
   width: 100%;
   height: 50px;
-  background: rgba(82, 179, 217, 1);
+  background: rgb(12, 226, 180);
   z-index: 110;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -422,6 +422,13 @@ form input[type="submit"] {
 }
 
 @media (max-width: 600px) {
+  .menu .name,
+  .last {
+    font-size: 18px;
+  }
+  .img_bg {
+    width: 300vw;
+  }
   form {
     z-index: 200;
   }
