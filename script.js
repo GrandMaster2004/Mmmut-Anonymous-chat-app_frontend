@@ -213,7 +213,8 @@ async function getUserLocationAndConnect() {
 
       if (reply) {
         // console.log("in the replya secontion");
-        let sen = reply.slice(0, -3);
+        let sen = reply;
+        // let sen = reply.slice(0, -3);
         li.innerHTML = `<div class="avatar">
           <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>

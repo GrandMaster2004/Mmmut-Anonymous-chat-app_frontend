@@ -10,7 +10,16 @@
 
   <body>
     <!-- <div class="container"></div> -->
-    <img class="img_bg" src="./bg7.webp" alt="img" />
+    <img
+      class="img_bg"
+      src="https://wallpaperaccess.com/full/2224387.jpg"
+      alt="img"
+    />
+    <img
+      class="img_bg2"
+      src="https://wallpaperaccess.com/full/2157.png"
+      alt="img"
+    />
     <div class="menu">
       <div class="name">Public Chat App MMM Only</div>
       <div class="last">Online Users: <span id="onlineCount">0 </span></div>
@@ -53,7 +62,7 @@
 
         document.getElementById(
           "reply-section"
-        ).innerHTML = `<li id='reply-box'><div><span id='user'>${user}</span> : <span class="message">${message}</span></div><div class="close" onclick="closeReply(this)">cut</div></li>`;
+        ).innerHTML = `<li id='reply-box'><div><span id='user'>${user}</span> : <span class="message">${message}</span></div><div class="close" onclick="closeReply(this)"><img src="./close.png" alt="icon" class='icon' /></div></li>`;
       }
       function closeReply(element) {
         // Remove the parent <li> element of the clicked "cut" button
