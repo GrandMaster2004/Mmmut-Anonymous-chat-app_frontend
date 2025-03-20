@@ -153,36 +153,36 @@ async function getUserLocationAndConnect() {
     });
     const { latitude, longitude } = position.coords;
     const allowedRadius = 2; // 2 KM Limit
-    // if (
-    //   haversine(latitude, longitude, 26.7354656, 83.4378953) > allowedRadius
-    // ) {
-    //   alert("You are not in MMMUT Campus, chat not allowed.");
-    //   return;
-    // } else {
-    // console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
+    if (
+      haversine(latitude, longitude, 26.7354656, 83.4378953) > allowedRadius
+    ) {
+      alert("You are not in MMMUT Campus, chat not allowed.");
+      return;
+    } else {
+      // console.log(haversine(latitude, longitude, 26.7354656, 83.4378953));
 
-    readData();
+      readData();
 
-    const socket = io(
-      // "http://127.0.0.1:3000"
-      "https://mmmut-anonymous-chat-app-backend.onrender.com"
-    );
-    socket.on("onlineUsers", (count) => {
-      onlineCount.textContent = count;
-    });
-    const now = new Date();
+      const socket = io(
+        // "http://127.0.0.1:3000"
+        "https://mmmut-anonymous-chat-app-backend.onrender.com"
+      );
+      socket.on("onlineUsers", (count) => {
+        onlineCount.textContent = count;
+      });
+      const now = new Date();
 
-    // Get the current hours, minutes, and seconds
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = now.getMinutes().toString().padStart(2, "0");
-    const currentTime = `${hours}:${minutes}`;
+      // Get the current hours, minutes, and seconds
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      const currentTime = `${hours}:${minutes}`;
 
-    // console.log("Current time:", currentTime);
-    socket.on("sendthis", (obj) => {
-      let li = document.createElement("li");
-      let reply = obj.userreply;
-      li.classList.add("other");
-      li.innerHTML = `<div class="avatar">
+      // console.log("Current time:", currentTime);
+      socket.on("sendthis", (obj) => {
+        let li = document.createElement("li");
+        let reply = obj.userreply;
+        li.classList.add("other");
+        li.innerHTML = `<div class="avatar">
           <img src="https://img.freepik.com/premium-photo/hand-drawn-cartoon-illustration-cute-little-girl-wearing-glasses_561641-10066.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
@@ -196,26 +196,26 @@ async function getUserLocationAndConnect() {
           </p>
           <time>${currentTime}</time>
         </div>`;
-      ul.appendChild(li);
-      showLastChat();
-    });
+        ul.appendChild(li);
+        showLastChat();
+      });
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (messageInput.value === "") return;
-      let li = document.createElement("li");
-      let reply = document.getElementById("reply-box");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (messageInput.value === "") return;
+        let li = document.createElement("li");
+        let reply = document.getElementById("reply-box");
 
-      li.classList.add("self");
-      reply = reply ? reply.innerText.trim() : null;
+        li.classList.add("self");
+        reply = reply ? reply.innerText.trim() : null;
 
-      // console.log(sen);
+        // console.log(sen);
 
-      if (reply) {
-        // console.log("in the replya secontion");
-        let sen = reply;
-        // let sen = reply.slice(0, -3);
-        li.innerHTML = `<div class="avatar">
+        if (reply) {
+          // console.log("in the replya secontion");
+          let sen = reply;
+          // let sen = reply.slice(0, -3);
+          li.innerHTML = `<div class="avatar">
           <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
@@ -228,15 +228,15 @@ async function getUserLocationAndConnect() {
           <time>${currentTime}</time>
         </div>`;
 
-        socket.emit("message", {
-          msg: messageInput.value,
-          user: userName,
-          userreply: sen,
-        });
-        writeUserData_reply(userName, messageInput.value, sen);
-        document.getElementById("reply-section").innerHTML = "";
-      } else {
-        li.innerHTML = ` <div class="avatar">
+          socket.emit("message", {
+            msg: messageInput.value,
+            user: userName,
+            userreply: sen,
+          });
+          writeUserData_reply(userName, messageInput.value, sen);
+          document.getElementById("reply-section").innerHTML = "";
+        } else {
+          li.innerHTML = ` <div class="avatar">
           <img src="https://img.freepik.com/premium-photo/cute-little-boy-cartoon-character-illustration_984314-230.jpg?w=2000" draggable="false" />
         </div>
         <div class="msg" onclick="selectMessage(this)">
@@ -247,18 +247,18 @@ async function getUserLocationAndConnect() {
           
           <time>${currentTime}</time>
         </div>`;
-        socket.emit("message", {
-          msg: messageInput.value,
-          user: userName,
-        });
-        writeUserData(userName, messageInput.value);
-      }
-      ul.appendChild(li);
+          socket.emit("message", {
+            msg: messageInput.value,
+            user: userName,
+          });
+          writeUserData(userName, messageInput.value);
+        }
+        ul.appendChild(li);
 
-      messageInput.value = "";
-      showLastChat();
-    });
-    // }
+        messageInput.value = "";
+        showLastChat();
+      });
+    }
   } catch (error) {
     alert(
       "You are not in MMMUT Campus, chat not allowed. You can try on location"
